@@ -1,0 +1,59 @@
+doctype html
+html
+  head
+    title User Logging Service     
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css') 
+    style.body{ word-wrap:break-word; }
+  body
+    .container
+      .page-header.text-center
+        h1
+          span.fa.fa-eye
+            User Logging Service
+                 
+        h1
+          span.fa.fa-anchor
+            Profile Page         
+        .row
+          .col-xs-6
+            a.btn.btn-primary(href='https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15', target='_blank') Stack Overflow           
+          .col-xs-6
+            a.btn.btn-warning.btn-sm(href='/logout') Logout       
+      .well
+        h3
+          span.fa.fa-user
+            User Info
+        strong Email / Username
+          :       
+      .well
+        strong Why do you decide to log these actions?         
+        ol
+          li
+            strong Questions Clicked
+              :
+                                         These could be used to identify the types of questions the user might be interested in.
+                     
+          li
+            strong Tags Clicked
+              :
+                                         These can help us identify broader collections of questions / specific topics that the user might be interested in.
+                     
+          li
+            strong Questions Starred / Un-starred
+              :
+                                          These can give us further and a much stronger indication of the user&apos;s interest in a paticular question / topic.           
+          li
+            strong Content Shared
+			  :
+                                        The content shared by the user is another strong indicator of interest and could be used to suggest similar content.
+                    
+          li
+            strong UpVotes and DownVotes
+              :
+                                         These can help us determine the user&apos;s activity levels and also the performance of the content presented on our site.
+                    
+          li
+            strong Scrolling
+              :
+                                         This can help us analyze the user&apos;s behaviour by logging how long and how deep the user is scrolling.

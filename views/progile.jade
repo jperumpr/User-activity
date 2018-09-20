@@ -1,0 +1,28 @@
+extend layout
+block content
+ h2.page-header User Profile Logging
+ val= user.username
+ val  is logged in
+
+ p Please choose one of the activity
+  form(method='post', action='/users/profile')
+  input.btn.btn-primary(type='submit', name='submit',value='StackOverflow', onclick="window.open('https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15');")
+  
+  form(method='get', action='/users/visualize')
+  input.btn.btn-primary(type='submit', name='submit',value='Visualize', onclick="location.href='http://localhost:3000/users/visualize';")
+  h3 Actions Logged
+  ul
+   li #[strong Questions Clicked]: These could be used to identify how much a user is active, and also stores the question id to see the type of questions he's interested.
+   li #[strong Upvotes]: These could be used to build the type of questions and answers which helped him. These content could be marked as relevant and more useful for a recomemndation.
+   li #[strong Downvotes]: These could be used to build the type of questions and answers which are not useful for the user. Upvotes and Downvotes could be used as an indication of the level activeness and the quality of the content presented in the site.
+   li #[strong Tags]: This is a good indicator to build a recommendation system based on the tags. If a user is interested in a tag, then we could recommend related tags based on content based filtering or collaborative filtering.
+   li #[strong Star]: This is an indication of the questions a user is interested in.
+   li #[strong Share]: This indicates the questions or answers which were useful to this user and which he finds more relevant to other users.
+
+
+  h4 Login History
+  ul
+  each val in loginHistory
+   li= val
+
+

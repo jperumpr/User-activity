@@ -1,0 +1,35 @@
+{
+"name": "Action Tracker",
+"version": "1.0.0",
+"manifest_version": 2,
+"description": "Extension for CSE 591 Assignment 1",
+"background": {
+"scripts": [
+"background.js"
+],
+"persistent": false
+},
+"browser_action": {
+"default_title": "Action Tracker"
+},
+"permissions": [
+"clipboardRead",
+"contentSettings",
+"cookies",
+"idle",
+"notifications",
+"tabs",
+"geolocation",
+"http://localhost:3000/*"
+],
+"content_scripts": [
+{
+"matches": [
+"https://stackoverflow.com/*"
+],
+"js": [
+"inject.js"
+]
+}
+]
+}

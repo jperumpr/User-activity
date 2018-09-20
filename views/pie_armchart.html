@@ -1,0 +1,115 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/users/profile">NodeAuth</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/users/profile">Member</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+</div>
+
+<!-- Styles -->
+<style>
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/pie.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<!-- Chart code -->
+<script>
+    const url = 'http://localhost:3000/users/computation';
+
+    fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data1) {
+            console.log(data1);
+
+            data = [{"action": "upvote & downvote", "count": data1.upvote},
+                {"action": "questions", "count": data1.questions},
+                {"action": "tags", "count": data1.tags}];
+            var chart = AmCharts.makeChart("chartdiv", {
+                "type": "pie",
+                "theme": "light",
+                "dataProvider": data,
+                "valueField": "count",
+                "titleField": "action",
+                "balloon": {
+                    "fixedPosition": true
+                },
+                "export": {
+                    "enabled": true
+                }
+            });
+        });
+</script>
+
+<!-- HTML -->
+<h1>Overall Activities Logged</h1>
+<div id="chartdiv"></div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col col-md-6 col-md-offset-5">
+            <button onclick="location.href = 'http://localhost:3000/users/visualize';" id="Overall" class="float-left submit-button" style="height:50px;width:100px">Overall</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_qns';" id="Questions" class="float-left submit-button" style="height:50px;width:100px">Question</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_upvotes';" id="UpVotesnDown" class="float-left submit-button" style="height:50px;width:100px">Votes</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_tags';" id="Tags" class="float-left submit-button" style="height:50px;width:100px">Tags</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-6">
+            <h2>Analysis of the Results</h2>
+            <ul>
+            <li>
+                This list shows the combined result of all users' overall percent of the activites spent on Stackoverflow Java page
+            </li>
+                <li>
+                    The implicit feedback by the user is collected and could be used to build a user profile for all the users.
+                </li>
+                <li>
+                    The result shows that the majority of the time users searched with the tags and opened questions in the corresponding tags.
+                </li>
+                <li>
+                    Users are more interested in a specific tag related search, and upvoted and downvoted questions under that tag.
+                </li>
+                <h3>Pattern Found</h3>
+                <ul>
+                    <li>
+                        From an analysis of the overall action data and the individual action data, we could find that user aaa, and ccc are active users.
+                        This could be observed from the number of questions clicked and upvotes by them.
+                    </li>
+                    <li>
+                        We could also find a pattern that the user ccc is having more reputation and aaa is a novice learner.
+                        This could be captured from the number of upvotes or downvotes clicked.
+                    </li>
+                    <li>
+                        There are tags which are clicked together. For eg: json and jsp.
+                        This could be observed from an analysis on the tags in each users' tags.
+                        This could be used to build a content based model.
+                    </li>
+                </ul>
+
+
+            </ul>
+        </div>
+    </div>
+
+</div>

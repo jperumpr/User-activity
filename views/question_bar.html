@@ -1,0 +1,114 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/users/profile">NodeAuth</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/users/profile">Member</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+</div>
+<!-- Styles -->
+<style>
+    #chartdiv {
+        width		: 75%;
+        height		: 500px;
+        font-size	: 11px;
+    }
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<!-- Chart code -->
+<script>
+    //var data1=[];
+    const url = 'http://localhost:3000/users/computation_qn';
+    fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log(data);
+            var chart = AmCharts.makeChart("chartdiv", {
+                "type": "serial",
+                "theme": "light",
+                "dataProvider": data,
+                "gridAboveGraphs": true,
+                "startDuration": 1,
+                "graphs": [{
+                    "balloonText": "[[category]]: <b>[[value]]</b>",
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "type": "column",
+                    "valueField": "questions_clicked"
+                }],
+                "chartCursor": {
+                    "categoryBalloonEnabled": false,
+                    "cursorAlpha": 0,
+                    "zoomable": false
+                },
+                "categoryField": "user",
+                "categoryAxis": {
+                    "gridPosition": "start",
+                    "gridAlpha": 0,
+                    "tickPosition": "start",
+                    "tickLength": 20
+                },
+                "export": {
+                    "enabled": true
+                }
+
+            });
+        });
+</script>
+
+<!-- HTML -->
+<h1>Count of Questions Clicked for Each User</h1>
+<div id="chartdiv"></div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col col-md-6 col-md-offset-5">
+            <button onclick="location.href = 'http://localhost:3000/users/visualize';" id="Overall" class="float-left submit-button" style="height:50px;width:100px">Overall</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_qns';" id="Questions" class="float-left submit-button" style="height:50px;width:100px">Question</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_upvotes';" id="UpVotes" class="float-left submit-button" style="height:50px;width:100px">UpVotes</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_tags';" id="Tags" class="float-left submit-button" style="height:50px;width:100px">Tags</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-6">
+            <h2>Analysis of the Results</h2>
+
+        <ul>
+            <li>
+                This result shows the total count of questions clicked by all the users in the domain.
+            </li>
+            <li>
+                This uses an Social model where the logged in User could view the question count of other users.
+            </li>
+            <li>
+                We could build a profile for this user, based on how active he is.
+            </li>
+            <li>
+                If a user views more number of questions, he could be categorised as an active user.
+            </li>
+            <li>
+                We store the question ids clicked by this user, and using a word cloud approach we could analyze a pattern in the type of question he views more.
+            </li>
+        </ul>
+        </div>
+    </div>
+
+</div>

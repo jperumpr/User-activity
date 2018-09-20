@@ -1,0 +1,130 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/users/profile">NodeAuth</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/users/profile">Member</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+</div>
+<!-- Styles -->
+<style>
+    #chartdiv {
+        width		: 75%;
+        height		: 500px;
+        font-size	: 11px;
+    }
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<!-- Chart code -->
+<script>
+    const url = 'http://localhost:3000/users/computation_upvote';
+    fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log(data);
+    var chart = AmCharts.makeChart("chartdiv", {
+        "type": "serial",
+        "theme": "light",
+        "legend": {
+            "horizontalGap": 10,
+            "maxColumns": 1,
+            "position": "right",
+            "useGraphSettings": true,
+            "markerSize": 10
+        },
+        "dataProvider": data,
+        "valueAxes": [{
+            "stackType": "regular",
+            "axisAlpha": 0.5,
+            "gridAlpha": 0
+        }],
+        "graphs": [{
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 0.8,
+            "labelText": "[[value]]",
+            "lineAlpha": 0.3,
+            "title": "UpVotes",
+            "type": "column",
+            "color": "#000000",
+            "valueField": "questions_upvoted"
+        }, {
+            "balloonText": "<b>[[title]]</b><br><span style='font-size:14px'>[[category]]: <b>[[value]]</b></span>",
+            "fillAlphas": 0.8,
+            "labelText": "[[value]]",
+            "lineAlpha": 0.3,
+            "title": "DownVotes",
+            "type": "column",
+            "color": "#000000",
+            "valueField": "questions_downvoted"
+        }],
+        "rotate": true,
+        "categoryField": "user",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha": 0,
+            "gridAlpha": 0,
+            "position": "left"
+        },
+        "export": {
+            "enabled": true
+        }
+    });
+    });
+</script>
+
+
+<!-- HTML -->
+<h1>Count of UpVotes and DownVotes for Each User</h1>
+<div id="chartdiv"></div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col col-md-6 col-md-offset-5">
+            <button onclick="location.href = 'http://localhost:3000/users/visualize';" id="Overall" class="float-left submit-button" style="height:50px;width:100px">Overall</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_qns';" id="Questions" class="float-left submit-button" style="height:50px;width:100px">Question</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_upvotes';" id="UpVotes" class="float-left submit-button" style="height:50px;width:100px">UpVotes</button>
+            <button onclick="location.href = 'http://localhost:3000/users/visual_tags';" id="Tags" class="float-left submit-button" style="height:50px;width:100px">Tags</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-6">
+            <h2>Analysis of the Results</h2>
+            <ul>
+                <li>
+                    Here, both the total number of upvotes and downvotes are logged for each user.
+                </li>
+                <li>
+                    We could observe that the User ccc has given a large number of downvotes, and User aaa didn't give any downvotes.
+                </li>
+                <li>
+                    This indicates that User ccc is an experienced user as a user require a reputation point of 125 to give downvotes.
+                </li>
+                <li>
+                    User aaa do not have much reputation as he couldn't give any downvotes.
+                </li>
+                <li>
+                    We could easily build a user profile for this user, on his level of expertise based on the number of downvotes and upvotes.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

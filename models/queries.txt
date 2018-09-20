@@ -1,0 +1,1 @@
+ db.users.aggregate([ { $unwind : "$actionData"},     { $match : {"actionData.type" : "question-hyperlink","username":"asq"}},     { $project : { _id : 0, actionData : 1}} ]).toArray().length
