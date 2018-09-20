@@ -35,7 +35,7 @@
 
 <!-- Chart code -->
 <script>
-    const url = 'http://localhost:3000/users/computation_upvote';
+    const url = 'http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/users/computation_upvote';
     fetch(url)
         .then((resp) => resp.json())
         .then(function(data) {
@@ -98,10 +98,10 @@
     <div class="row">
 
         <div class="col col-md-6 col-md-offset-5">
-            <button onclick="location.href = 'http://localhost:3000/users/visualize';" id="Overall" class="float-left submit-button" style="height:50px;width:100px">Overall</button>
-            <button onclick="location.href = 'http://localhost:3000/users/visual_qns';" id="Questions" class="float-left submit-button" style="height:50px;width:100px">Question</button>
-            <button onclick="location.href = 'http://localhost:3000/users/visual_upvotes';" id="UpVotes" class="float-left submit-button" style="height:50px;width:100px">UpVotes</button>
-            <button onclick="location.href = 'http://localhost:3000/users/visual_tags';" id="Tags" class="float-left submit-button" style="height:50px;width:100px">Tags</button>
+            <button onclick="location.href = 'http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/users/visualize';" id="Overall" class="float-left submit-button" style="height:50px;width:100px">Overall</button>
+            <button onclick="location.href = 'http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/users/visual_qns';" id="Questions" class="float-left submit-button" style="height:50px;width:100px">Question</button>
+            <button onclick="location.href = 'http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/users/visual_upvotes';" id="UpVotes" class="float-left submit-button" style="height:50px;width:100px">UpVotes</button>
+            <button onclick="location.href = 'http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/users/visual_tags';" id="Tags" class="float-left submit-button" style="height:50px;width:100px">Tags</button>
         </div>
     </div>
     <div class="row">

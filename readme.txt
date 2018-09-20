@@ -12,7 +12,7 @@ MongoDB:
 Running the server in local host
 (1). Run the command npm start from nodeauth folder.
 (2). Open the port 3000
-(3). In the chrome browser, open the url: "http://localhost:3000/users/login"
+(3). In the chrome browser, open the url: "http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/users/login"
 (4). Login with any of the users, aaa, bbb, ccc, with the password 123.
 
 

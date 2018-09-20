@@ -9,7 +9,7 @@ block content
   input.btn.btn-primary(type='submit', name='submit',value='StackOverflow', onclick="window.open('https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15');")
   
   form(method='get', action='/users/visualize')
-  input.btn.btn-primary(type='submit', name='submit',value='Visualize', onclick="location.href='http://localhost:3000/users/visualize';")
+  input.btn.btn-primary(type='submit', name='submit',value='Visualize', onclick="location.href='http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/users/visualize';")
   h3 Actions Logged
   ul
    li #[strong Questions Clicked]: These could be used to identify how much a user is active, and also stores the question id to see the type of questions he's interested.

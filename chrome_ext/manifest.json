@@ -20,7 +20,7 @@
 "notifications",
 "tabs",
 "geolocation",
-"http://localhost:3000/*"
+"http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/*"
 ],
 "content_scripts": [
 {

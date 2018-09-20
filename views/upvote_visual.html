@@ -30,7 +30,7 @@
     var g = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    const url = 'http://localhost:3000/users/computation_upvote';
+    const url = 'http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/users/computation_upvote';
     fetch(url)
         .then((resp) => resp.json())
         .then(function(data) {
