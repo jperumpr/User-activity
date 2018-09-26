@@ -24,3 +24,9 @@ Importing the chrome extension
 2. Click on load unpacked.
 3. Select the folder chrome_ext in the unpacked folder.
 4. Import all the three files.
+
+
+This assignment is hosted at the below location:
+http://ec2-34-213-90-117.us-west-2.compute.amazonaws.com:3000/
+
+For analysis and patterns, please scroll down in each visualization page
